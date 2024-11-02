@@ -1,7 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+  const navigate = useNavigate();
+const[loginStatus, setLoginStatus]=useState(false)
+
+useEffect(()=>{
+  let token = localStorage.getItem("token");
+  if (!token){
+    setLoginStatus(false)
+  // navigate('/login')
+    
+  }else{
+
+    setLoginStatus(true);
+  };
+}, [loginStatus]);
+
+const logoutHandler=()=>{
+  localStorage.clear();
+  navigate('/login')
+}
+
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
   <Link className="navbar-brand" to="/">GoodReads</Link>
@@ -26,8 +47,15 @@ const Navbar = () => {
 
     </ul>
     <form className="form-inline my-2 my-lg-0">
-      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    {
+      loginStatus?(
+        <button className="btn btn-danger my-2 my-sm-0" onClick={logoutHandler} type="submit">LogOut</button>
+
+      ):(
+        <Link className="btn btn-primary my-2 my-sm-0" to='/login'>Login</Link>
+      )
+
+    }
     </form>
   </div>
 </nav>
