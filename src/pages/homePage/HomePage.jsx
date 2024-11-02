@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Header from  '../../components/header/Header'
 import CategoryList from '../../components/categoryList/CategoryList'
+import BookList from '../../components/bookList/BookList'
 
 
 const HomePage = () => {
@@ -10,6 +11,7 @@ const HomePage = () => {
         <Navbar />
         <Header />
         <CategoryList />
+        <BookList/>
     </>
   )
 }

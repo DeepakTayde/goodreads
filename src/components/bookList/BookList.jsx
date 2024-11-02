@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import BOOK_DATA from '../../data/books'
 import Book from './book/Book';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks, setBooks } from '../../redux/actions/BookActions';
+
 
 const BookList = () => {
-    const [books, setBooks] = useState([])
+    // const [books, setBooks] = useState([])
+
+    const books = useSelector(state => state.allBooks.books)
+    const dispatch = useDispatch()
 
     useEffect(()=>{
-        setBooks(BOOK_DATA)
+        // dispatch(setBooks(BOOK_DATA))
+        dispatch(fetchBooks())
     }, [])
   return (
     <div className="container-fluid mt-3">

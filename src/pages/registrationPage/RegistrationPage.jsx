@@ -124,7 +124,7 @@ const RegistrationPage = () => {
               </div>
               <input
                 type="submit"
-                value="submit"
+                value="Register"
                 disabled={!formik.isValid}
                 className="btn btn-primary btn-block"
               />
